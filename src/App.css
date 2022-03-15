@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.container{
+  width: 80%;
+  margin: 0 auto;
+  padding: 9px;
+  border: 1 px groove blue;
+}
