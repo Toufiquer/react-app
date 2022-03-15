@@ -43,7 +43,8 @@
     border: 1px groove blue;
     margin: 5px auto;
 }
-.singleStudent {
+.singleStudent,
+.singleItem {
     border: 1px groove blue;
     margin: 9px;
     padding: 9px;

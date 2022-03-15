@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
+import { useEffect, useState } from "react";
 let student1 = {
     name: "Abdul Rahman",
     section: "A",
@@ -71,6 +72,10 @@ function App() {
                         section={student.section}
                     ></Student>
                 ))}
+                <h2>This is for State</h2>
+                <Counter value={55}></Counter>
+                <h2>This data is coming form fetch or json place holder</h2>
+                <User></User>
             </div>
         </div>
     );
@@ -89,6 +94,39 @@ function Student(props) {
             <h2>Name: {props.name}</h2>
             <h2>Section: {props.section}</h2>
             <h2>ID: {props.id}</h2>
+        </div>
+    );
+}
+function Counter(props) {
+    const [count, SetCount] = useState(props.value);
+    const increaseCount = () => SetCount(count + 1);
+    const decreaseCount = () => SetCount(count - 1);
+    return (
+        <div>
+            <h1>Counter: {count}</h1>
+            <button onClick={increaseCount}> Increase</button>
+            <button onClick={decreaseCount}> Decrease</button>
+        </div>
+    );
+}
+function User() {
+    const [user, SetUser] = useState([]);
+    useEffect(() => {
+        fetch("https://jsonplaceholder.typicode.com/users")
+            .then(res => res.json())
+            .then(data => SetUser(data));
+    }, []);
+    return (
+        <div>
+            {user.map(user => SingleUser(user))}
+        </div>
+    );
+}
+function SingleUser(props) {
+    return (
+        <div className="singleItem">
+            <h1>Name: {props.name}</h1>
+            <h3>Email: {props.email}</h3>
         </div>
     );
 }
