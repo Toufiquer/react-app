@@ -15,6 +15,13 @@ let singleStyle = {
 let { name, section, id } = student1;
 
 function App() {
+    let allStudents = [
+        { name: "Name 01", section: "A", id: "001" },
+        { name: "Name 02", section: "A", id: "002" },
+        { name: "Name 03", section: "A", id: "003" },
+        { name: "Name 04", section: "A", id: "004" },
+        { name: "Name 05", section: "A", id: "005" },
+    ];
     return (
         <div className="App">
             <header className="App-header">
@@ -48,8 +55,41 @@ function App() {
                     Student Name: {name}, Section: {section}, id: {id}
                 </h3>
             </div>
+            <div className="container">
+                <h3>this is just Heading</h3>
+                {/* This is component name called myComponent */}
+                <MyComponent></MyComponent>
+                <Student name="Student Name 01" section="A" id="01"></Student>
+                <Student name="Student Name 02" section="A" id="02"></Student>
+                <Student name="Student Name 03" section="A" id="03"></Student>
+                <Student name="Student Name 05" section="A" id="04"></Student>
+                <h2>This is dynamic Data</h2>
+                {allStudents.map(student => (
+                    <Student
+                        name={student.name}
+                        id={student.id}
+                        section={student.section}
+                    ></Student>
+                ))}
+            </div>
         </div>
     );
 }
-
+function MyComponent() {
+    return (
+        <div>
+            <h2>Heading of Component</h2>
+            <p>This is the paragraph of Component</p>
+        </div>
+    );
+}
+function Student(props) {
+    return (
+        <div className="singleStudent">
+            <h2>Name: {props.name}</h2>
+            <h2>Section: {props.section}</h2>
+            <h2>ID: {props.id}</h2>
+        </div>
+    );
+}
 export default App;
